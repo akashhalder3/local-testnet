@@ -9,11 +9,21 @@ cleanup() {
 
 trap cleanup EXIT
 
+BASE_CL_PORT=31000
 index=$1
+
+# Function to find an available port
+find_available_port() {
+    local port=$1
+    while nc -z localhost $port; do
+        port=$((port + 1))
+    done
+    echo $port
+}
 
 cl_data_dir $index
 datadir=$cl_data_dir
-port=$(expr $BASE_CL_PORT + $index + 2)
+port=$($BASE_CL_PORT + $index)
 echo $index
 echo $port
 http_port=$(expr $BASE_CL_HTTP_PORT + $index)
@@ -39,7 +49,7 @@ $LIGHTHOUSE_CMD beacon_node \
 	--http-port $http_port \
 	--disable-packet-filter \
     < /dev/null > $log_file 2>&1
-sleep 5
+
 if test $? -ne 0; then
     node_error "The lighthouse beacon node #$index returns an error. The last 10 lines of the log file is shown below.\n\n$(tail -n 10 $log_file)"
     exit 1
