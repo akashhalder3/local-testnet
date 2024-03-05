@@ -18,11 +18,12 @@ echo $index
 echo $port
 http_port=$(expr $BASE_CL_HTTP_PORT + $index)
 log_file=$datadir/beacon_node.log
-sleep 5
+
 echo "Started the lighthouse beacon node #$index which is now listening at port $port and http at port $http_port. You can see the log at $log_file"
 
 # --disable-packet-filter is necessary because it's involed in rate limiting and nodes per IP limit
 # See https://github.com/sigp/discv5/blob/v0.1.0/src/socket/filter/mod.rs#L149-L186
+sleep 5
 $LIGHTHOUSE_CMD beacon_node \
     --datadir $datadir \
 	--testnet-dir $CONSENSUS_DIR \
@@ -38,7 +39,7 @@ $LIGHTHOUSE_CMD beacon_node \
 	--http-port $http_port \
 	--disable-packet-filter \
     < /dev/null > $log_file 2>&1
-
+sleep 5
 if test $? -ne 0; then
     node_error "The lighthouse beacon node #$index returns an error. The last 10 lines of the log file is shown below.\n\n$(tail -n 10 $log_file)"
     exit 1
