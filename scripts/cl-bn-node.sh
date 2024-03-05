@@ -9,7 +9,7 @@ cleanup() {
 
 trap cleanup EXIT
 
-index=1
+index=$1
 
 cl_data_dir $index
 datadir=$cl_data_dir
@@ -29,8 +29,8 @@ $LIGHTHOUSE_CMD beacon_node \
 	--enable-private-discovery \
 	--staking \
 	--enr-address 127.0.0.1 \
-	--enr-udp-port $port \
-	--enr-tcp-port $port \
+	--enr-udp-port $port+1 \
+	--enr-tcp-port $port+2 \
 	--port $port \
     --http \
 	--http-port $http_port \
