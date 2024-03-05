@@ -9,7 +9,7 @@ cleanup() {
 
 trap cleanup EXIT
 
-BASE_CL_PORT=31000
+BASE_CL_PORT=$31000
 index=$1
 
 # Function to find an available port
