@@ -13,7 +13,7 @@ index=$1
 
 cl_data_dir $index
 datadir=$cl_data_dir
-port=$(expr $BASE_CL_PORT + $index)
+port=$(expr $BASE_CL_PORT + $index + 2)
 echo $index
 echo $port
 http_port=$(expr $BASE_CL_HTTP_PORT + $index)
