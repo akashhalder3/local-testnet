@@ -15,7 +15,7 @@ cl_data_dir $index
 datadir=$cl_data_dir
 port=$(expr $BASE_CL_PORT + $index)
 http_port=$(expr $BASE_CL_HTTP_PORT + $index + 1)
-echo $http_port
+echo $port
 log_file=$datadir/beacon_node.log
 
 echo "Started the lighthouse beacon node #$index which is now listening at port $port and http at port $http_port. You can see the log at $log_file"
