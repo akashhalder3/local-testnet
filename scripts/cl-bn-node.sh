@@ -9,7 +9,7 @@ cleanup() {
 
 trap cleanup EXIT
 
-BASE_CL_PORT=31000
+$BASE_CL_PORT=31000
 
 index=$1
 
@@ -26,7 +26,6 @@ cl_data_dir $index
 datadir=$cl_data_dir
 port=$(find_available_port $BASE_CL_PORT)
 echo "Selected port for libp2p communication: $port"
-
 http_port=$(expr $BASE_CL_HTTP_PORT + $index)
 log_file=$datadir/beacon_node.log
 
