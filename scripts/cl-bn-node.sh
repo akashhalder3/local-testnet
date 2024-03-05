@@ -29,8 +29,8 @@ $LIGHTHOUSE_CMD beacon_node \
 	--enable-private-discovery \
 	--staking \
 	--enr-address 127.0.0.1 \
-	--enr-udp-port $(expr $port+$1) \
-	--enr-tcp-port $(expr $port+$2) \
+	--enr-udp-port $port \
+	--enr-tcp-port $port \
 	--port $port \
     --http \
 	--http-port $http_port \
