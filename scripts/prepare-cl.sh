@@ -11,7 +11,6 @@ if ! test -e ./web3/node_modules; then
     echo "Node modules are already installed"
 fi
 
-echo "Tinker bell"
 # Use the signing node as a node to deploy the deposit contract
 output=$(NODE_PATH=./web3/node_modules node ./web3/src/deploy-deposit-contract.js --endpoint $SIGNER_EL_DATADIR/geth.ipc)
 address=$(echo "$output" | grep "address" | cut -d ' ' -f 2)
