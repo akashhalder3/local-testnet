@@ -11,10 +11,22 @@ trap cleanup EXIT
 
 index=$1
 
+# Function to find an available port
+find_available_port() {
+    local start_port=$1
+    local current_port=$start_port
+    while nc -z localhost $current_port; do
+        current_port=$((current_port + 1))
+    done
+    echo $current_port
+}
+
 cl_data_dir $index
 datadir=$cl_data_dir
-port=$(expr $BASE_CL_PORT + $index)
-http_port=$(expr $BASE_CL_HTTP_PORT + $4)
+port=$(find_available_port $BASE_CL_PORT)
+echo "Selected port for libp2p communication: $port"
+http_port=$(find_available_port $BASE_CL_HTTP_PORT)
+echo "Selected port for HTTP communication: $http_port"
 log_file=$datadir/beacon_node.log
 
 echo "Started the lighthouse beacon node #$index which is now listening at port $port and http at port $http_port. You can see the log at $log_file"
