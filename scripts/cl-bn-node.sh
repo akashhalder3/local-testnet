@@ -14,6 +14,8 @@ index=$1
 cl_data_dir $index
 datadir=$cl_data_dir
 port=$(expr $BASE_CL_PORT + $index)
+echo $i
+echo $port
 http_port=$(expr $BASE_CL_HTTP_PORT + $index)
 log_file=$datadir/beacon_node.log
 
