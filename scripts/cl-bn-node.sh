@@ -18,7 +18,7 @@ echo $index
 echo $port
 http_port=$(expr $BASE_CL_HTTP_PORT + $index)
 log_file=$datadir/beacon_node.log
-
+sleep 5
 echo "Started the lighthouse beacon node #$index which is now listening at port $port and http at port $http_port. You can see the log at $log_file"
 
 # --disable-packet-filter is necessary because it's involed in rate limiting and nodes per IP limit
