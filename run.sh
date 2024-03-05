@@ -34,7 +34,7 @@ cleanup() {
         sleep 1
     done
     while test -e $ROOT; do
-        rm -rf $ROOT 2>/dev/null
+        # rm -rf $ROOT 2>/dev/null
         sleep 1
     done
     echo "Deleted the data directory"
