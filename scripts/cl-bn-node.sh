@@ -31,6 +31,13 @@ else
     port=$((BASE_CL_PORT + index))
 fi
 
+# If index is 3, add 3 to the port
+if [[ $index -eq 4 ]]; then
+    port=$((BASE_CL_PORT + 4))
+else
+    port=$((BASE_CL_PORT + index))
+fi
+
 http_port=$((BASE_CL_HTTP_PORT + index))
 
 echo "Started the lighthouse beacon node #$index which is now listening at port $port and http at port $http_port. You can see the log at $log_file"
