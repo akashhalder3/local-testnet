@@ -17,23 +17,9 @@ port=$(expr $BASE_CL_PORT + $index)
 http_port=$(expr $BASE_CL_HTTP_PORT + $index)
 log_file=$datadir/beacon_node.log
 
-# If index is 2, add 2 to the port
+# If index is 2, add 5 to the port
 if [[ $index -eq 2 ]]; then
-    port=$((BASE_CL_PORT + 2))
-else
-    port=$((BASE_CL_PORT + index))
-fi
-
-# If index is 3, add 3 to the port
-if [[ $index -eq 3 ]]; then
-    port=$((BASE_CL_PORT + 3))
-else
-    port=$((BASE_CL_PORT + index))
-fi
-
-# If index is 3, add 3 to the port
-if [[ $index -eq 4 ]]; then
-    port=$((BASE_CL_PORT + 4))
+    port=$((BASE_CL_PORT + 5))
 else
     port=$((BASE_CL_PORT + index))
 fi
